@@ -15,4 +15,4 @@ runs:
     - name: List all from root
       shell: bash
       run: |
-        ls -al /
+        ls -alR /
