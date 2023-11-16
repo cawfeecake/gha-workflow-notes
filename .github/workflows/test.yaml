@@ -6,4 +6,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Test
-        uses: ./.github/actions/print-all
+        uses: cawfeecake/gha-workflow-notes/.github/actions/print-all@main
