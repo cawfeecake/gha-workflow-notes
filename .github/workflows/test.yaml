@@ -13,10 +13,10 @@ jobs:
 
           jq '.' response.json
 
-      - name: Print `jobs` context
+      - name: Print `job` context
         run: |
           cat <<-'EOF' >response.json
-          ${{ toJSON(jobs) }}
+          ${{ toJSON(job) }}
           EOF
 
           jq '.' response.json
@@ -25,6 +25,22 @@ jobs:
         run: |
           cat <<-'EOF' >response.json
           ${{ toJSON(needs) }}
+          EOF
+
+          jq '.' response.json
+
+      - name: Print `runner` context
+        run: |
+          cat <<-'EOF' >response.json
+          ${{ toJSON(runner) }}
+          EOF
+
+          jq '.' response.json
+          
+      - name: Print `steps` context
+        run: |
+          cat <<-'EOF' >response.json
+          ${{ toJSON(steps) }}
           EOF
 
           jq '.' response.json
