@@ -10,6 +10,6 @@ jobs:
       - name: Test
         run: |
           cat <<-'EOF' >response.json
-          ${{ toJSON(github} }}
+          ${{ toJSON(github) }}
           EOF
           find /home/runner/work/_actions -type f -wholename '*/.github/workflows/*'
