@@ -13,8 +13,4 @@ jobs:
 
       - uses: cawfeecake/gha-workflow-notes/.github/actions/print-workspace-from-action@main
         with:
-          action-path: ${{ github.path }}
-          action-env: ${{ github.env }}
-          action-step-summary: ${{ github.step_summary }}
-          action-state: ${{ github.state }}
-          action-output: ${{ github.output }}
+          workflow-filepath: ${{ github.workflow }}
