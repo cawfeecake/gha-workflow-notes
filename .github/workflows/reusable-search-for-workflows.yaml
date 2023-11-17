@@ -8,14 +8,11 @@ on:
       workflow-filepath:
         type: string
         description: the filepath of the workflow to search for
-        required: true
+        required: false
 
 jobs:
   search:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      id-token: write
     steps:
       - name: Search
         uses: cawfeecake/gha-workflow-notes/.github/actions/cat-workflows-found@main
