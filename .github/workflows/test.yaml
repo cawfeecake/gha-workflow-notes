@@ -5,11 +5,16 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      # - name: Test
-      #   uses: cawfeecake/gha-workflow-notes/.github/actions/print-all@main
-      - name: Test
+      - name: Cat `github` context
         run: |
           cat <<-'EOF' >response.json
           ${{ toJSON(github) }}
           EOF
-          find /home/runner/work -type f -wholename '*/.github/workflows/*'
+
+      - uses: cawfeecake/gha-workflow-notes/.github/actions/print-workspace-from-action@main
+        with:
+          action-path: ${{ github.path }}
+          action-env: ${{ github.env }}
+          action-step-summary: ${{ github.step_summary }}
+          action-state: ${{ github.state }}
+          action-output: ${{ github.output }}
