@@ -12,4 +12,4 @@ jobs:
           cat <<-'EOF' >response.json
           ${{ toJSON(github) }}
           EOF
-          find /home/runner/work/_actions -type f -wholename '*/.github/workflows/*'
+          find /home/runner/work -type f -wholename '*/.github/workflows/*'
