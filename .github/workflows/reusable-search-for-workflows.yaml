@@ -1,0 +1,21 @@
+on:
+  workflow_call:
+    inputs:
+      dir:
+        type: string
+        description: the root directory to search recursively from
+        required: true
+      workflow-filepath:
+        type: string
+        description: the filepath of the workflow to search for
+        required: true
+
+jobs:
+  search:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Search
+        uses: cawfeecake/gha-workflow-notes/.github/actions/cat-workflows-found@main
+        with:
+          dir: ${{ inputs.dir }}
+          workflow-filepath: ${{ inputs.workflow-filepath }}
