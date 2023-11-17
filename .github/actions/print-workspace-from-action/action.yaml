@@ -1,0 +1,55 @@
+name: "Print action's workspace"
+description: Prints the workspace (and more) this action is running in
+inputs:
+  action-path:
+    description: "Path of the workflow's path"
+    required: false
+  action-env:
+    description: "Path of the workflow's env"
+    required: false
+  action-step-summary:
+    description: "Path of the workflow's step_summary"
+    required: false
+  action-state:
+    description: "Path of the workflow's state"
+    required: false
+  action-output:
+    description: "Path of the workflow's output"
+    required: false
+runs:
+  using: composite
+  steps:
+    - name: List all from work root
+      shell: bash
+      run: |
+        find /home/runner/work
+
+    - name: Find any workflow files from work root
+      shell: bash
+      run: |
+        find /home/runner/work -type f -wholename '*/.github/workflows/*'
+
+    - name: Cat `path`
+      if: ${{ inputs.action-path }}
+      shell: bash
+      run: cat ${{ inputs.action-path }}
+      
+    - name: Cat `env`
+      if: ${{ inputs.action-env }}
+      shell: bash
+      run: cat ${{ inputs.action-env }}
+
+    - name: Cat `step_summary`
+      if: ${{ inputs.action-step-summary }}
+      shell: bash
+      run: cat ${{ inputs.action-step-summary }}
+      
+    - name: Cat `state`
+      if: ${{ inputs.action-state }}
+      shell: bash
+      run: cat ${{ inputs.action-state }}
+      
+    - name: Cat `output`
+      if: ${{ inputs.action-output }}
+      shell: bash
+      run: cat ${{ inputs.action-output }}
