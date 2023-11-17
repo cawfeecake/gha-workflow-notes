@@ -1,0 +1,19 @@
+name: Print found workflows
+description: "`cat` any files in the given directory that match the path of the given workflow"
+inputs:
+  dir:
+    description: the root directory to search from
+    required: true
+  workflow-filepath:
+    description: the filepath of the workflow to serach for and print
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Find any workflow files from work root, and then print
+      shell: bash
+      env:
+        ROOT_DIR: ${{ inputs.dir }}
+        WORKFLOW_PATH: ${{ inputs.workflow-filepath }}
+      run: |
+        find $ROOT_DIR -type f -wholename "*/$WORKFLOW_PATH" | xargs tail -n +1
