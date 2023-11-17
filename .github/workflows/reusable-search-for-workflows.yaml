@@ -13,6 +13,9 @@ on:
 jobs:
   search:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
     steps:
       - name: Search
         uses: cawfeecake/gha-workflow-notes/.github/actions/cat-workflows-found@main
