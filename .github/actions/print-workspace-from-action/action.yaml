@@ -1,5 +1,9 @@
 name: "Print action's workspace"
 description: Prints the workspace (and more) this action is running in
+inputs:
+  workflow-filepath:
+    description: filepath (from repo root) of the workflow running this action
+    required: true
 runs:
   using: composite
   steps:
@@ -13,7 +17,11 @@ runs:
       run: |
         find /home/runner/work -type f -wholename '*/.github/workflows/*'
 
-    - name: `cat` the first found workflow file
+    - name: `cat` the first found workflow file that matches input
       shell: bash
-      run: |
-        find /home/runner/work -type f -wholename '*/.github/workflows/*' | xargs -n 1 cat
+      env:
+        WORKFLOW_FILEPATH: ${{ inputs.workflow-filepath }}
+      run: >
+        find /home/runner/work -type f -wholename '*/.github/workflows/*' |
+          grep "$WORKFLOW_FILEPATH" |
+          head -1 | xargs -n 1 cat
