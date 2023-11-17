@@ -10,6 +10,11 @@ inputs:
 runs:
   using: composite
   steps:
+    - name: Print workflow from this context
+      shell: bash
+      run: |
+        echo ${{ github.workflow }}
+
     - name: Find any workflow files from work root, and then print
       shell: bash
       env:
