@@ -17,7 +17,7 @@ runs:
       run: |
         find /home/runner/work -type f -wholename '*/.github/workflows/*'
 
-    - name: `cat` the first found workflow file that matches input
+    - name: '`cat` the first found workflow file that matches input'
       shell: bash
       env:
         WORKFLOW_FILEPATH: ${{ inputs.workflow-filepath }}
