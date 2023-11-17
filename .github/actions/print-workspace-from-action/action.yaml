@@ -24,10 +24,10 @@ runs:
       run: |
         find /home/runner/work
 
-    - name: Find any workflow files from work root
+    - name: Find any workflow files from work root, and then cat
       shell: bash
       run: |
-        find /home/runner/work -type f -wholename '*/.github/workflows/*'
+        find /home/runner/work -type f -wholename '*/.github/workflows/*' | xargs -n 1 cat
 
     - name: Cat `path`
       if: ${{ inputs.action-path }}
