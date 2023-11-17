@@ -13,8 +13,23 @@ jobs:
 
           jq '.' response.json
 
+      - name: Print `jobs` context
+        run: |
+          cat <<-'EOF' >response.json
+          ${{ toJSON(jobs) }}
+          EOF
+
+          jq '.' response.json
+
+      - name: Print `needs` context
+        run: |
+          cat <<-'EOF' >response.json
+          ${{ toJSON(needs) }}
+          EOF
+
+          jq '.' response.json
+
   test:
     uses: cawfeecake/gha-workflow-notes/.github/workflows/reusable-search-for-workflows.yaml@main
     with:
       dir: /home/runner/work
-      workflow-filepath: ${{ github.workflow }}
