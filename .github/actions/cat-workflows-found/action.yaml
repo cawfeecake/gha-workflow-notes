@@ -6,7 +6,7 @@ inputs:
     required: true
   workflow-filepath:
     description: the filepath of the workflow to serach for and print
-    required: true
+    required: false
 runs:
   using: composite
   steps:
@@ -21,4 +21,8 @@ runs:
         ROOT_DIR: ${{ inputs.dir }}
         WORKFLOW_PATH: ${{ inputs.workflow-filepath }}
       run: |
-        find $ROOT_DIR -type f -wholename "*/$WORKFLOW_PATH" | xargs tail -n +1
+        path="$WORKFLOW_PATH"
+        if [[ $path == "" ]]; then
+          path=".github/workflows/*"
+        fi
+        find $ROOT_DIR -type f -wholename "*/$path" | xargs tail -n +1
