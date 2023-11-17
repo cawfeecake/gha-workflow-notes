@@ -3,14 +3,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cat `github` context
-        run: |
-          cat <<-'EOF' >response.json
-          ${{ toJSON(github) }}
-          EOF
-
-      - uses: cawfeecake/gha-workflow-notes/.github/actions/print-workspace-from-action@main
-        with:
-          workflow-filepath: ${{ github.workflow }}
+    uses: cawfeecake/gha-workflow-notes/.github/workflows/reusable-search-for-workflows.yaml@main
+    with:
+      dir: /home/runner/work
+      workflow-filepath: ${{ github.workflow }}
